@@ -1,5 +1,5 @@
 /** Dicionario de dados do banco de dados KIT_LANCHE_BD **/
-
+use  KIT_LANCHE_BD
 -- Tipo padrao para codigo
 sp_addtype code,'numeric(6,0)', NONULL
 

@@ -1,30 +1,10 @@
 /** Tabelas do banco de dados KIT_LANCHE_BD **/
 
-
+create database KIT_LANCHE_BD
+use KIT_LANCHE_BD
 /****************************************** ENTIDADES ******************************************/
 
--- Tabela Pedido
 
-create table PEDIDO (
-	n_pedido code,
-	qtd_kit quantity,
-	valor value,
-	cod_cliente code,
-	primary key (n_pedido),
-	foreign key (cod_cliente) references CLIENTE
-)
-
--- Tabela Nota Fiscal
-
-create table NOTA_FISCAL (
-	n_nota code,
-	solicitante name,
-	GED name,
-	n_folha_servico small_quantity not null,
-	cod_pedido code,
-	primary key (n_nota),
-	foreign key (cod_pedido) references PEDIDO
-)
 
 -- Tabela Transportadora
 
@@ -40,19 +20,8 @@ create table TRANSPORTADORA(
 create table KIT_LANCHE (
 	codigo code,
 	preco_venda value,
+	preco_bruto value,
 	primary key (codigo),
-)
-
--- Tabela  Caixa Kit Lanche
-
-create table CAIXA_KIT (
-	codigo code,
-	volume quantity,
-	tipo_kit code,
-	cod_pedido code,
-	primary key (codigo),
-	foreign key (tipo_kit) references KIT_LANCHE,
-	foreign key (cod_pedido) references PEDIDO
 )
 
 -- Tabela  Produto
@@ -63,6 +32,8 @@ create table PRODUTO (
 	qtd_estoque quantity,
 	primary key (codigo)
 )
+
+
 
 -- Tabela  Pessoa
 
@@ -106,6 +77,41 @@ create table FORNECEDOR (
 	primary key (codigo),
 	foreign key (codigo) references PESSOA
 )
+-- Tabela Pedido
+
+create table PEDIDO (
+	n_pedido code,
+	qtd_kit quantity,
+	valor value,
+	cod_cliente code,
+	primary key (n_pedido),
+	foreign key (cod_cliente) references CLIENTE
+)
+
+-- Tabela Nota Fiscal
+
+create table NOTA_FISCAL (
+	n_nota code,
+	solicitante name,
+	GED name,
+	n_folha_servico small_quantity not null,
+	cod_pedido code,
+	primary key (n_nota),
+	foreign key (cod_pedido) references PEDIDO
+)
+-- Tabela  Caixa Kit Lanche
+
+create table CAIXA_KIT (
+	codigo code,
+	volume quantity,
+	tipo_kit code,
+	cod_pedido code,
+	primary key (codigo),
+	foreign key (tipo_kit) references KIT_LANCHE,
+	foreign key (cod_pedido) references PEDIDO
+)
+
+
 
 /****************************************** AGREGAÇÕES ******************************************/
 
@@ -154,6 +160,7 @@ create table FORNECEDOR (
 	qtd_kit small_quantity,
 	cod_aux code,
 	tipo_kit code,
+	primary key (cod_aux,tipo_kit).
 	foreign key (tipo_kit) references KIT_LANCHE,
 	foreign key (cod_aux) references AUX_MONTAGEM 
  )

@@ -1,5 +1,5 @@
 /*********** ÍNDICES DO BANCO DE DADOS KIT LANCHE ***********/
-
+use  KIT_LANCHE_BD
 -- Indices da tabela Pedido
 
 create index cli_code
